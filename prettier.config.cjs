@@ -5,6 +5,7 @@ const options = {
   arrowParens: "always",
   tabWidth: 2,
   trailingComma: "all",
+  semi: false,
 }
 
-export default options
+module.exports = options
