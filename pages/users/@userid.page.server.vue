@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { inject } from "vue"
 import { db } from "@lib/db"
+import { User } from "@prisma/client"
 
 const pageContext: any = inject("pageContext")
 const id = parseInt(pageContext.routeParams.userid, 10)
-const user = await db.user.findFirst({ where: { id } })
+const users: User[] = await db.$queryRaw`SELECT * FROM User WHERE id = ${id}`
+const user = users[0] || null
 
 if (!user) {
   throw new Error("User not found")
