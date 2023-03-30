@@ -2,7 +2,7 @@
 import { db } from "@lib/db"
 import Counter from "@components/Counter.vue"
 
-const posts = await db.$queryRaw`SELECT * FROM Post`
+const posts: any[] = await db.$queryRaw`SELECT * FROM Post`
 </script>
 
 <template>
