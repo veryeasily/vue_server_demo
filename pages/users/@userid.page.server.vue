@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { inject } from "vue"
-import assert from "node:assert"
 import { db, User } from "@lib/db"
 
 const pageContext: any = inject("pageContext")
 const id = parseInt(pageContext.routeParams.userid, 10)
 const users: User[] = await db.$queryRaw`SELECT * FROM User WHERE id = ${id}`
 const user = users[0] || null
-assert(user, "User not found")
+
+if (!user) {
+  throw new Error("User not found")
+}
 </script>
 
 <template>
