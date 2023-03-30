@@ -1,3 +1,10 @@
+<script lang="ts" setup>
+import { db } from "@lib/db"
+import Counter from "@components/Counter.vue"
+
+const posts = await db.$queryRaw`SELECT * FROM Post`
+</script>
+
 <template>
   <h1>Welcome</h1>
   This page is:
@@ -14,10 +21,3 @@
     </li>
   </ul>
 </template>
-
-<script lang="ts" setup>
-import { db } from "@lib/db"
-import Counter from "@components/Counter.vue"
-
-const posts = await db.post.findMany()
-</script>
